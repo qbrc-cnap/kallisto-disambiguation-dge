@@ -18,7 +18,7 @@ workflow KallistoAndSleuthWorkflow{
     String genome
     File kallisto_index_path
     File transcript_to_gene_mapping
-    Int kallisto_bootstraps
+    Int kallisto_bootstraps = 500
     String output_zip_name
     String git_repo_url
     String git_commit_hash
