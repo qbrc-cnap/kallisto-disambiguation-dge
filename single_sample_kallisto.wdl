@@ -47,23 +47,23 @@ task KallistoQuantification {
             ${r1_fastq} \
             ${r2_fastq} >> ${stdout_log} 2>&1
 
-        mv "kallisto_results_${sample_name}/abundance.h5" "kallisto_results_${sample_name}/${sample_name}.h5"
-        mv "kallisto_results_${sample_name}/abundance.tsv" "kallisto_results_${sample_name}/${sample_name}.tsv"
-        mv "kallisto_results_${sample_name}/run_info.json" "kallisto_results_${sample_name}/${sample_name}.json"
+        mv "kallisto_results_${sample_name}/abundance.h5" "${sample_name}.h5"
+        mv "kallisto_results_${sample_name}/abundance.tsv" "${sample_name}.tsv"
+        mv "kallisto_results_${sample_name}/run_info.json" "${sample_name}.json"
     }
 
     output {
         File kallisto_stdout = "${stdout_log}"
-        File abundance_h5 = "kallisto_results_${sample_name}/${sample_name}.h5"
-        File abundance_tsv = "kallisto_results_${sample_name}/${sample_name}.tsv"
-        File run_info = "kallisto_results_${sample_name}/${sample_name}.json"
+        File abundance_h5 = "${sample_name}.h5"
+        File abundance_tsv = "${sample_name}.tsv"
+        File run_info = "${sample_name}.json"
     }
 
     runtime {
         zones: "us-east4-c"
         docker: "docker.io/blawney/kallisto:v0.0.1"
         cpu: 4
-        memory: "3 G"
+        memory: "5 G"
         disks: "local-disk " + disk_size + " HDD"
         preemptible: 0
     }
