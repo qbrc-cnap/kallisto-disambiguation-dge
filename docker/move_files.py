@@ -24,7 +24,7 @@ if __name__ == '__main__':
         bn = os.path.basename(f)
         contents = bn.split('.')
         file_extension = contents[-1]
-        file_type = contents[2]
+        file_type = contents[-2]
         sample_name = '.'.join(contents[:-2])
         if not os.path.exists(sample_name):
             os.mkdir(sample_name)
