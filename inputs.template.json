@@ -1,0 +1,17 @@
+{
+  "KallistoAndSleuthWorkflow.git_repo_url": "String",
+  "KallistoAndSleuthWorkflow.output_zip_name": "String",
+  "KallistoAndSleuthWorkflow.git_commit_hash": "String",
+  "KallistoAndSleuthWorkflow.r2_files": "Array[File]",
+  "KallistoAndSleuthWorkflow.sample_annotations": "File",
+  "KallistoAndSleuthWorkflow.r1_files": "Array[File]",
+  "KallistoAndSleuthWorkflow.sleuth_dge.transcript_to_gene_mapping": "File",
+  "KallistoAndSleuthWorkflow.kallisto_index_path": "File",
+  "KallistoAndSleuthWorkflow.base_conditions": "Array[String]",
+  "KallistoAndSleuthWorkflow.kallisto_bootstraps": "Int",
+  "KallistoAndSleuthWorkflow.sleuth_dge.annotations": "File",
+  "KallistoAndSleuthWorkflow.experimental_conditions": "Array[String]",
+  "KallistoAndSleuthWorkflow.genome": "String",
+  "KallistoAndSleuthWorkflow.transcript_to_gene_mapping": "File"
+}
+
