@@ -19,8 +19,7 @@ def map_inputs(user, unmapped_data, id_list):
 
     d = {}
     d[id_list[0]] = genome_choice 
-    d[id_list[1]] = j[genome_choice]['star_index']
-    d[id_list[2]] = j[genome_choice]['gtf']
-    d[id_list[3]] = j[genome_choice]['bed_annotations']
+    d[id_list[1]] = j[genome_choice]['kallisto_index_path']
+    d[id_list[2]] = j[genome_choice]['transcript_to_gene_mapping']
     return d 
 

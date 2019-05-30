@@ -1,12 +1,10 @@
 {
     "Ensembl Homo sapiens GRCh38.95":{
-        "star_index": "gs://cnap-hsph-resources/grch38.95/grch38.95.tar",
-        "gtf": "gs://cnap-hsph-resources/grch38.95/Homo_sapiens.GRCh38.95.gtf",
-        "bed_annotations": "gs://cnap-hsph-resources/grch38.95/grch38.95.bed12_annotations.bed"
+        "kallisto_index_path": "gs://cnap-hsph-resources/grch38.95/Homo_sapiens.GRCh38.cdna.all.release-95_k31.idx",
+        "transcript_to_gene_mapping": "gs://cnap-hsph-resources/grch38.95/Homo_sapiens.GRCh38.95.kallisto_gene_to_transcript_mapping.tsv"
     },
     "Ensembl Mus musculus GRCm38.95":{
-        "star_index": "gs://cnap-hsph-resources/grcm38.95/grcm38.95.tar",
-        "gtf": "gs://cnap-hsph-resources/grcm38.95/Mus_musculus.GRCm38.95.gtf",
-        "bed_annotations": "gs://cnap-hsph-resources/grcm38.95/grcm38.95.bed12_annotations.bed"
+        "kallisto_index_path": "gs://cnap-hsph-resources/grcm38.95/Mus_musculus.GRCm38.cdna.all.release-95_k31.idx",
+        "transcript_to_gene_mapping": "gs://cnap-hsph-resources/grcm38.95/Mus_musculus.GRCm38.95.kallisto_gene_to_transcript_mapping.tsv"
     }
 }
