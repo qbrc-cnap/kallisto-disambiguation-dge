@@ -14,13 +14,13 @@ task sleuth_dge {
     Float qval_threshold = 0.05
 
     command {
-        python3 /opt/software/scripts/move_files.py ${sep=" " abundance_h5_files}
-        python3 /opt/software/scripts/move_files.py ${sep=" " abundance_tsv_files}
-        python3 /opt/software/scripts/move_files.py ${sep=" " run_info_files}
+        python3 /opt/software/move_files.py ${sep=" " abundance_h5_files}
+        python3 /opt/software/move_files.py ${sep=" " abundance_tsv_files}
+        python3 /opt/software/move_files.py ${sep=" " run_info_files}
 
-        python3 /opt/software/scripts/create_sleuth_annotation_file.py -o ${sleuth_annotations}
+        python3 /opt/software/create_sleuth_annotation_file.py -i ${annotations} -o ${sleuth_annotations}
 
-        Rscript /opt/software/scripts/sleuth.R \
+        Rscript /opt/software/sleuth.R \
             ${sleuth_annotations} \
             ${transcript_to_gene_mapping} \
             ${sleuth_output} \

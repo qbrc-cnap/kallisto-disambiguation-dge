@@ -26,7 +26,7 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -
   bash /opt/software/miniconda.sh -b -p /opt/software/miniconda
 ENV PATH="/opt/software/miniconda/bin:${PATH}"
 
-# install kallisto
+# install kallisto and sleuth via conda
 RUN conda config --add channels defaults && \
   conda config --add channels bioconda && \
   conda config --add channels conda-forge && \
@@ -51,16 +51,8 @@ RUN cd /opt/software && \
   make && \
   make install
 
-# Install DESeq2 and dependencies:
+# Install ggplot2 for sleuth's plotting:
 RUN R -e "install.packages('ggplot2', repos = 'http://cran.us.r-project.org');"
-#RUN R -e "source('http://bioconductor.org/biocLite.R'); biocLite('RCurl'); biocLite('XML');"
-#RUN R -e "install.packages('reshape2', repos = 'http://cran.us.r-project.org'); install.packages('tidyverse', repos = 'http://cran.us.r-project.org'); install.packages('ggdendro', repos = 'http://cran.us.r-project.org'); install.packages('gplots', repos = 'http://cran.us.r-project.org'); install.packages('ggplot2', repos = 'http://cran.us.r-project.org');"
-#ADD deseq2.R /opt/software/
-#ADD make_dge_plots.py /opt/software/
-#ADD make_figures.R /opt/software/
-#ADD draw_heatmap.R /opt/software/
-#ADD draw_pca.R /opt/software/
-#ADD contrast_independent_figures.R /opt/software/
 
 # Install some Python3 libraries:
 ADD requirements.txt /opt/software/
@@ -84,6 +76,13 @@ ADD check_fastq.py /opt/software/precheck/
 # The script for generating the markdown report:
 ADD generate_report.py /usr/local/bin/
 RUN chmod +x /usr/local/bin/generate_report.py
+
+# The scripts for preparing files for sleuth:
+ADD move_files.py /opt/software/
+ADD create_sleuth_annotation_file.py /opt/software/
+
+# the actual script to run sleuth:
+ADD sleuth.R /opt/software
 
 # Add the report template and styling:
 RUN mkdir /opt/report
