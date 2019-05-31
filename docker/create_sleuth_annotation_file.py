@@ -23,4 +23,6 @@ if __name__ == '__main__':
     annotations = pd.read_csv(original_annotation_file, sep='\t', names=['sample','condition'])
     wd = os.path.abspath(os.getcwd())
     annotations['path'] = annotations['sample'].apply(lambda x: os.path.join(wd, x))
+    exists = annotations['path'].apply(lambda x: os.path.exists(x))
+    annotations = annotations.loc[exists]
     annotations.to_csv(args[OUTPUT], sep='\t', index=False)
