@@ -1,7 +1,5 @@
 task sleuth_dge {
     Array[File] abundance_h5_files
-    Array[File] abundance_tsv_files
-    Array[File] run_info_files
     File annotations
     File transcript_to_gene_mapping
 
@@ -14,12 +12,11 @@ task sleuth_dge {
     Float qval_threshold = 0.05
 
     command {
+        echo "Moving abundance.h5 files..."
         /usr/bin/python3 /opt/software/move_files.py ${sep=" " abundance_h5_files}
-        /usr/bin/python3 /opt/software/move_files.py ${sep=" " abundance_tsv_files}
-        /usr/bin/python3 /opt/software/move_files.py ${sep=" " run_info_files}
-
+        echo "Completed moving files..."
         /usr/bin/python3 /opt/software/create_sleuth_annotation_file.py -i ${annotations} -o ${sleuth_annotations}
-
+        echo "Created annotations for sleuth process..."
         Rscript /opt/software/sleuth.R \
             ${sleuth_annotations} \
             ${transcript_to_gene_mapping} \
@@ -28,19 +25,20 @@ task sleuth_dge {
             ${plot_dir} \
             ${max_transcripts} \
             ${qval_threshold}
+        echo "Completed sleuth"
     }
 
     output {
         File norm_counts = "${sleuth_norm_counts}"
         File sleuth_results = "${sleuth_output}"
-        Array[File] sleuth_plots = glob("${plot_dir}/*")
+        Array[File] sleuth_plots = glob("${plot_dir}/*.png")
     }
 
     runtime {
         zones: "us-east4-c"
         docker: "docker.io/blawney/kallisto:v0.0.1"
         cpu: 4
-        memory: "3 G"
+        memory: "5 G"
         disks: "local-disk " + disk_size + " HDD"
         preemptible: 0
     }

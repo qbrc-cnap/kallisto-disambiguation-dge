@@ -54,8 +54,6 @@ workflow KallistoAndSleuthWorkflow{
     call sleuth.sleuth_dge as sleuth_dge {
         input:
             abundance_h5_files = single_sample_process.abundance_h5,
-            abundance_tsv_files = single_sample_process.abundance_tsv,
-            run_info_files = single_sample_process.run_info,
             annotations = sample_annotations,
             transcript_to_gene_mapping = transcript_to_gene_mapping
     }
