@@ -51,8 +51,8 @@ RUN cd /opt/software && \
   make && \
   make install
 
-# Install ggplot2 for sleuth's plotting:
-RUN R -e "install.packages('ggplot2', repos = 'http://cran.us.r-project.org');"
+# Install packages for sleuth's plotting:
+RUN R -e "install.packages('ggplot2', repos = 'http://cran.us.r-project.org'); install.packages('gridExtra', repos = 'http://cran.us.r-project.org');"
 
 # Install some Python3 libraries:
 ADD requirements.txt /opt/software/
@@ -80,6 +80,7 @@ RUN chmod +x /usr/local/bin/generate_report.py
 # The scripts for preparing files for sleuth:
 ADD move_files.py /opt/software/
 ADD create_sleuth_annotation_file.py /opt/software/
+ADD pivot_normalized_counts.py /opt/software/
 
 # the actual script to run sleuth:
 ADD sleuth.R /opt/software
