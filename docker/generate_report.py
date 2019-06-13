@@ -34,8 +34,8 @@ class InputDisplay(object):
     '''
     def __init__(self, sample_name, r1, r2):
         self.sample_name = sample_name
-        self.r1 = r1
-        self.r2 = r2
+        self.r1 = os.path.basename(r1)
+        self.r2 = os.path.basename(r2)
 
 
 class AnnotationDisplay(object):
