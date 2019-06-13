@@ -110,7 +110,7 @@ def get_versions():
     fastqc_version = fastqc_version_str.strip().split(" ")[-1]
 
     d = {}
-    d['kallisto_version'] = star_version
+    d['kallisto_version'] = kallisto_version
     d['multiqc_version'] = multiqc_version
     d['fastqc_version'] = fastqc_version
     return d
