@@ -77,6 +77,9 @@ ADD check_fastq.py /opt/software/precheck/
 ADD generate_report.py /usr/local/bin/
 RUN chmod +x /usr/local/bin/generate_report.py
 
+# The script for organizing files prior to compression:
+ADD organize_report.py /opt/software
+
 # The scripts for preparing files for sleuth:
 ADD move_files.py /opt/software/
 ADD create_sleuth_annotation_file.py /opt/software/

@@ -13,6 +13,7 @@ GROUP_A <- args[8] # the 'base' condition
 GROUP_B <- args[9] # the 'experimental' condition
 PCA_FILENAME <- args[10] # the name of the PCA plot
 HEATMAP_FILENAME <- args[11] # the name of the heatmap
+CONTRAST_NAME <- args[12] # the name of the contrast (e.g. "A_versus_B")
 
 # cast to appropriate types:
 QVAL_THRESHOLD <- as.double(QVAL_THRESHOLD)
@@ -74,12 +75,12 @@ if (N == 0){
 	print(sprintf('Found %s significant hits', N))
 	for(i in 1:N){
 		transcript_id = significant_hits_table[i, 'target_id']
-		outfile = sprintf('%s/%s.png', PLOTS_DIR, transcript_id)
+		outfile = sprintf('%s/%s.%s.png', PLOTS_DIR, CONTRAST_NAME, transcript_id)
 		gg <- plot_bootstrap(so, transcript_id, units = "tpm", color_by = "condition")
 		ggsave(filename=outfile, gg)
 	}
 	transcript_list = significant_hits_table[1:N,'target_id']
 	th <- plot_transcript_heatmap(so, transcript_list)
-	outfile = sprintf('%s/%s.png', PLOTS_DIR, HEATMAP_FILENAME)
+	outfile = sprintf('%s/%s', PLOTS_DIR, HEATMAP_FILENAME)
 	ggsave(filename=outfile, th)
 }

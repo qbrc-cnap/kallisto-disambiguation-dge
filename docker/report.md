@@ -19,7 +19,7 @@ The following contrasts were performed, yielding the differentially expressed tr
 |Experimental condition | Base condition| Upregulated | Downregulated | Result table | Heatmap of top DE transcripts |
 |---|---|---|---|---|---|
 {% for item in contrast_display %}
-|{{item.exp_condition}} | {{item.base_condition}} | {{item.up_counts}}|{{item.down_counts}}| [Table](differential_expression/{{item.contrast_name}}.{{sleuth_output_suffix}}) | [Figure](differential_expression/{{item.contrast_name}}.{{top_heatmap_suffix}})|
+|{{item.exp_condition}} | {{item.base_condition}} | {{item.up_counts}}|{{item.down_counts}}| [Table](differential_expression/{{item.contrast_name}}/{{item.contrast_name}}.{{sleuth_output_suffix}}) | [Figure](differential_expression/{{item.contrast_name}}/{{item.contrast_name}}.{{top_heatmap_suffix}})|
 {% endfor %}
 
 ## Outputs:
@@ -34,8 +34,6 @@ The main results are contained in a zip-archive and should be downloaded an "unz
     - This directory contains an interactive HTML-based QC report which summarizes read quality, pseudo-alignment information, and other metrics.  It was produced by MultiQC, and information can be found at <https://multiqc.info/>.
 - **Quantifications**
     - Quantification tables, which give estimates of the mRNA quantity, as expressed in units of *transcripts per million* (TPM).  Files are tab-delimited.  These may be opened with your software of choice, including spreadsheet software such as Excel (note: <https://doi.org/10.1186/s13059-016-1044-7>).
-- **Logs**
-    - This contains logs and summaries produced by the various tools.  These can be used for troubleshooting, if necessary.
 - **Differential expression results**
 
     Differential expression results performed by Sleuth are organized by the contrasts requested.  Thus, each folder, named by the contrast, contains the following files:

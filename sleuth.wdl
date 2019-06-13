@@ -44,7 +44,8 @@ task sleuth_dge {
             ${base_group} \
             ${experimental_group} \
             ${pca_output} \
-            ${heatmap_output}
+            ${heatmap_output} \
+            ${contrast_name}
 
         echo "Completed sleuth"
 

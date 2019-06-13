@@ -143,9 +143,10 @@ task zip_results {
         mkdir report/differential_expression
 
         mv ${multiqc_report} report/qc/
-        mv -t report/differential_expression ${sep=" " sleuth_outputs}
-        mv -t report/differential_expression ${sep=" " normalized_counts_files}
-        mv -t report/differential_expression ${sep=" " contrast_figure_list}
+
+        python3 /opt/software/organize_report.py -b report/differential_expression ${sep=" " sleuth_outputs}
+        python3 /opt/software/organize_report.py -b report/differential_expression ${sep=" " normalized_counts_files}
+        python3 /opt/software/organize_report.py -b report/differential_expression ${sep=" " contrast_figure_list}
 
         mv ${analysis_report} report/
         zip -r "${zip_name}.zip" report
