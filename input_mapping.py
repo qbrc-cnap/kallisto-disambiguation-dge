@@ -1,7 +1,7 @@
 from base.models import Resource
 import os
 
-def map_inputs(user, unmapped_data, id_list):
+def map_inputs(user, all_data, data_name, id_list):
     '''
     `user` is a User instance (or subclass).  This gives us
     the option of applying user-specific logic to the mapping.
@@ -10,17 +10,22 @@ def map_inputs(user, unmapped_data, id_list):
     such as filtering Resource objects for a particular user.
     Therefore we have to keep that information here
 
-    `unmapped_data` is some data structure sent by
+    `all_data` is some data structure sent by
     the frontend.  The structure is known to the 
     developer since they specified the input element responsible
     for creating the data.  For example, a file chooser will send
     a list/array of primary keys.
+
+    `data_name` is how the data specific to this UI element is addressed
+    in the `all_data` structure.
 
     `id_list` is a list of WDL input "names"/ids that we are mapping
     to.  Note that the ordering is important.  Make sure the logic below
     matches the order in gui.json 
 
     '''
+    unmapped_data = all_data[data_name]
+
     r1_suffix = '_R1.fastq.gz'
     r2_suffix = '_R2.fastq.gz'
     r1_path_list = []
